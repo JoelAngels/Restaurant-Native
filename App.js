@@ -1,11 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 
@@ -15,7 +7,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 Icon.loadFont();
 
 const App = () => {
-  return <Text>Joel is good</Text>;
+  return <Text style={styles.Primary}>Joel is good</Text>;
 };
 
 const styles = StyleSheet.create({
