@@ -22,6 +22,14 @@ const Home = () => {
           <Feather name="menu" size={24} color={colors.textDark} />
         </View>
       </SafeAreaView>
+
+      {/* Titles */}
+      <View style={styles.titlesWrapper}>
+        <Text style={styles.titlesSubtitle}>Food</Text>
+        <Text style={styles.titlesTitle}>Delivery</Text>
+      </View>
+
+      {/* Search */}
     </View>
   );
 };
@@ -32,6 +40,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+
   headerWrapper: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -44,5 +53,23 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 40,
+  },
+
+  titlesWrapper: {
+    marginTop: 30,
+    paddingHorizontal: 20,
+  },
+
+  titlesSubtitle: {
+    fontFamily: 'Poppins-regular',
+    color: colors.textDark,
+    fontSize: 16,
+  },
+
+  titlesTitle: {
+    fontFamily: 'Poppins-Bold',
+    color: colors.textDark,
+    fontSize: 32,
+    marginTop: 5,
   },
 });
