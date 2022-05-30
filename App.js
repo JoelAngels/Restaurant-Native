@@ -1,13 +1,30 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import Home from './components/Home';
 
 // import colors from './assets/colors/colors';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-Icon.loadFont();
+// Icon.loadFont();
+
+const Stack = createNativeStackNavigator();
 
 const App = () => {
-  return <Text style={styles.Primary}>Joel is good</Text>;
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Home"
+          component={Home}
+          options={{
+            headerShown: false,
+          }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
 };
 
 const styles = StyleSheet.create({
