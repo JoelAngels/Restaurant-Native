@@ -99,9 +99,14 @@ const Home = ({navigation}) => {
         <View style={styles.popularWrapper}>
           <Text style={styles.popularTitle}>Popular</Text>
           {popularData.map(item => (
-            <TouchableOpacity>
+            <TouchableOpacity
+              key={item.id}
+              onPress={() =>
+                navigation.navigate('Details', {
+                  item: item,
+                })
+              }>
               <View
-                key={item.id}
                 style={[
                   styles.popularCardWrapper,
                   {
