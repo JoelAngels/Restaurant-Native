@@ -34,10 +34,17 @@ const Details = ({route, navigation}) => {
         </View>
       </SafeAreaView>
 
-      {/* Tiles */}
+      {/* Titles */}
       <View style={styles.titlesWrapper}>
         <Text style={styles.title}>{item.title}</Text>
       </View>
+
+      {/* Price */}
+      <View style={styles.priceWrapper}>
+        <Text style={styles.priceText}>{item.price}</Text>
+      </View>
+
+      {/* Pizza Info */}
     </View>
   );
 };
@@ -82,5 +89,16 @@ const styles = StyleSheet.create({
     fontSize: 32,
     color: colors.textDark,
     width: '50%',
+  },
+
+  priceWrapper: {
+    marginTop: 20,
+    paddingHorizontal: 20,
+  },
+
+  priceText: {
+    color: colors.price,
+    fontFamily: 'Poppins-Bold',
+    fontSize: 32,
   },
 });
