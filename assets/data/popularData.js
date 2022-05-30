@@ -8,7 +8,7 @@ const popularData = [
   },
 
   {
-    id: 1,
+    id: 2,
     image: require('../images/shrimp-icon.png'),
     title: 'Vegetarian Pizza',
     weight: '540 gr',
@@ -16,7 +16,7 @@ const popularData = [
   },
 
   {
-    id: 1,
+    id: 3,
     image: require('../images/soda-icon.png'),
     title: 'Pepperoni Pizza',
     weight: '700 gr',
