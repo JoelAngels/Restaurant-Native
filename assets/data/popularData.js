@@ -50,12 +50,12 @@ const popularData = [
     deliveryTime: 40,
     ingredients: [
       {
-        id: '1',
+        id: 1,
         name: 'cheese',
         image: require('../images/cheese.png'),
       },
       {
-        id: '2',
+        id: 2,
         name: 'garlic',
         image: require('../images/garlic.png'),
       },
@@ -75,12 +75,12 @@ const popularData = [
     deliveryTime: 20,
     ingredients: [
       {
-        id: '1',
+        id: 1,
         name: 'tomato',
         image: require('../images/tomato.png'),
       },
       {
-        id: '2',
+        id: 2,
         name: 'cheese',
         image: require('../images/cheese.png'),
       },

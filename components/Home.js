@@ -89,8 +89,6 @@ const Home = ({navigation}) => {
               keyExtractor={item => item.id}
               horizontal={true} //tells the code to scroll horizontal
               showsHorizontalScrollIndicator={false}
-              snapToAlignment={'start'}
-              decelerationRate={'fast'}
             />
           </View>
         </View>

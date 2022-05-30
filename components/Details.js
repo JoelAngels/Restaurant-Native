@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import {
   Text,
   View,
@@ -5,6 +6,8 @@ import {
   StyleSheet,
   TouchableOpacity,
   Image,
+  FlatList,
+  ScrollView,
 } from 'react-native';
 import React from 'react';
 
@@ -15,61 +18,104 @@ import colors from '../assets/colors/colors';
 const Details = ({route, navigation}) => {
   const {item} = route.params;
 
+  const renderIngredientsItem = ({item}) => {
+    return (
+      <View
+        style={[
+          styles.ingredientItemWrapper,
+          {
+            marginLeft: item.id === 1 ? 20 : 0,
+          },
+        ]}>
+        <Image source={item.image} style={styles.ingredientImage} />
+      </View>
+    );
+  };
+
   return (
     <View style={styles.container}>
-      {/* Header */}
-      <SafeAreaView>
-        <View style={styles.headerWrapper}>
-          <TouchableOpacity onPress={() => navigation.goBack()}>
-            <View style={styles.headerLeft}>
-              <Feather name="chevron-left" size={12} color={colors.textDark} />
+      <ScrollView
+        contentInsetAdjustmentBehavior="automatic"
+        showsVerticalScrollIndicator={false}>
+        {/* Header */}
+        <SafeAreaView>
+          <View style={styles.headerWrapper}>
+            <TouchableOpacity onPress={() => navigation.goBack()}>
+              <View style={styles.headerLeft}>
+                <Feather
+                  name="chevron-left"
+                  size={12}
+                  color={colors.textDark}
+                />
+              </View>
+            </TouchableOpacity>
+            <View style={styles.headerRight}>
+              <MaterialCommunityIcons
+                name="star"
+                size={12}
+                color={colors.white}
+              />
             </View>
-          </TouchableOpacity>
-          <View style={styles.headerRight}>
-            <MaterialCommunityIcons
-              name="star"
-              size={12}
-              color={colors.white}
+          </View>
+        </SafeAreaView>
+
+        {/* Titles */}
+        <View style={styles.titlesWrapper}>
+          <Text style={styles.title}>{item.title}</Text>
+        </View>
+
+        {/* Price */}
+        <View style={styles.priceWrapper}>
+          <Text style={styles.priceText}>${item.price}</Text>
+        </View>
+
+        {/* Pizza Info */}
+
+        <View style={styles.infoWrapper}>
+          <View style={styles.infoLeftWrapper}>
+            <View style={styles.infoItemWrapper}>
+              <Text style={styles.infoItemTitle}>Size</Text>
+              <Text style={styles.infoItemText}>
+                {item.sizeName} {item.sizeNumber}"
+              </Text>
+            </View>
+
+            <View style={styles.infoItemWrapper}>
+              <Text style={styles.infoItemTitle}>Crust</Text>
+              <Text style={styles.infoItemText}>{item.crust}</Text>
+            </View>
+
+            <View style={styles.infoItemWrapper}>
+              <Text style={styles.infoItemTitle}>Delivery</Text>
+              <Text style={styles.infoItemText}>{item.deliveryTime} mins</Text>
+            </View>
+          </View>
+          <View>
+            <Image source={item.image} style={styles.itemImage} />
+          </View>
+        </View>
+
+        {/* Ingredients */}
+        <View style={styles.ingredientsWrapper}>
+          <Text style={styles.ingredientsTitle}>Ingredients</Text>
+          <View style={styles.ingredientsListWrapper}>
+            <FlatList
+              data={item.ingredients}
+              renderItem={renderIngredientsItem}
+              horizontal={true}
+              showsHorizontalScrollIndicator={false}
             />
           </View>
         </View>
-      </SafeAreaView>
+      </ScrollView>
 
-      {/* Titles */}
-      <View style={styles.titlesWrapper}>
-        <Text style={styles.title}>{item.title}</Text>
-      </View>
-
-      {/* Price */}
-      <View style={styles.priceWrapper}>
-        <Text style={styles.priceText}>${item.price}</Text>
-      </View>
-
-      {/* Pizza Info */}
-
-      <View style={styles.infoWrapper}>
-        <View style={styles.infoLeftWrapper}>
-          <View style={styles.infoItemWrapper}>
-            <Text style={styles.infoItemTitle}>Size</Text>
-            <Text style={styles.infoItemText}>
-              {item.sizeName} {item.sizeNumber}"
-            </Text>
-          </View>
-
-          <View style={styles.infoItemWrapper}>
-            <Text style={styles.infoItemTitle}>Crust</Text>
-            <Text style={styles.infoItemText}>{item.crust}</Text>
-          </View>
-
-          <View style={styles.infoItemWrapper}>
-            <Text style={styles.infoItemTitle}>Delivery</Text>
-            <Text style={styles.infoItemText}>{item.deliveryTime} mins</Text>
-          </View>
+      {/* Place an order */}
+      <TouchableOpacity onPress={() => alert('Your order has been placed')}>
+        <View style={styles.orderWrapper}>
+          <Text style={styles.orderText}>Place an order</Text>
+          <Feather name="chevron-right" size={18} color={colors.black} />
         </View>
-        <View style={styles.infoRightWrapper}>
-          <Image source={item.image} style={styles.itemImage} />
-        </View>
-      </View>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -161,5 +207,55 @@ const styles = StyleSheet.create({
 
   ingredientsWrapper: {
     marginTop: 40,
+  },
+
+  ingredientsTitle: {
+    paddingHorizontal: 20,
+    fontFamily: 'Poppins-Bold',
+    fontSize: 16,
+    color: colors.textDark,
+  },
+
+  ingredientsListWrapper: {
+    paddingVertical: 20,
+  },
+
+  ingredientItemWrapper: {
+    backgroundColor: colors.white,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 10,
+    marginRight: 15,
+    borderRadius: 15,
+    shadowColor: colors.black,
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.05,
+    shadowRadius: 10,
+    elevation: 2,
+  },
+
+  ingredientImage: {
+    resizeMode: 'contain',
+  },
+
+  orderWrapper: {
+    marginTop: 60,
+    marginBottom: 10,
+    marginHorizontal: 20,
+    backgroundColor: colors.primary,
+    borderRadius: 50,
+    paddingVertical: 15,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  orderText: {
+    fontFamily: 'Poppins-Bold',
+    fontSize: 14,
+    marginRight: 10,
   },
 });
