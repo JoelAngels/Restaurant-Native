@@ -1,3 +1,5 @@
+/* eslint-disable no-shadow */
+/* eslint-disable no-alert */
 /* eslint-disable react-native/no-inline-styles */
 import {
   Text,
