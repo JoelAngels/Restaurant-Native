@@ -14,7 +14,7 @@ import categoriesData from '../assets/data/categoriesData';
 import popularData from '../assets/data/popularData';
 import colors from '../assets/colors/colors';
 
-Feather.loadFont();
+// Feather.loadFont();
 
 const Home = () => {
   const renderCategoryItem = ({item}) => {
@@ -83,8 +83,57 @@ const Home = () => {
             renderItem={renderCategoryItem}
             keyExtractor={item => item.id}
             horizontal={true} //tells the code to scroll horizontal
+            showsHorizontalScrollIndicator={false}
+            snapToAlignment={'start'}
+            decelerationRate={'fast'}
           />
         </View>
+      </View>
+
+      {/* Popular */}
+      <View style={styles.popularWrapper}>
+        <Text style={styles.popularTitle}>Popular</Text>
+        {popularData.map(item => (
+          <View
+            style={[
+              styles.popularCardWrapper,
+              {
+                marginTop: item.id === 1 ? 10 : 20,
+              },
+            ]}>
+            <View>
+              <View>
+                <View style={styles.popularTopWrapper}>
+                  <MaterialCommunityIcons
+                    name="crown"
+                    size={12}
+                    color={colors.primary}
+                  />
+                  <Text style={styles.popularTopText}>Top of the week</Text>
+                </View>
+                <View style={styles.popularTitlesWrapper}>
+                  <Text style={styles.popularTitlesTitle}>{item.title}</Text>
+                  <Text style={styles.popularTitlesWeight}>
+                    Weight{item.weight}
+                  </Text>
+                </View>
+              </View>
+              <View style={styles.popularCardBottom}>
+                <View style={styles.addPizzaButton}>
+                  <Feather name="plus" size={10} colors={colors.textDark} />
+                </View>
+                <View style={styles.ratingWrapper}>
+                  <MaterialCommunityIcons
+                    name="star"
+                    size={10}
+                    color={colors.textDark}
+                  />
+                  <Text style={styles.rating}>{item.rating}</Text>
+                </View>
+              </View>
+            </View>
+          </View>
+        ))}
       </View>
     </View>
   );
@@ -154,7 +203,7 @@ const styles = StyleSheet.create({
   },
 
   categoriesTitle: {
-    fontFamily: 'Poppins-Semibold',
+    fontFamily: 'Poppins-SemiBold',
     fontSize: 16,
     paddingHorizontal: 20,
   },
@@ -197,5 +246,83 @@ const styles = StyleSheet.create({
 
   categorySelectIcon: {
     alignSelf: 'center',
+  },
+
+  popularWrapper: {
+    paddingHorizontal: 20,
+  },
+
+  popularTitle: {
+    fontFamily: 'Poppins-Bold',
+    fontSize: 16,
+  },
+
+  popularCardWrapper: {
+    backgroundColor: colors.white,
+    borderRadius: 25,
+    paddingTop: 20,
+    paddingLeft: 20,
+    flexDirection: 'row',
+    overflow: 'hidden',
+    shadowColor: colors.black,
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.05,
+    shadowRadius: 10,
+    elevation: 2,
+  },
+
+  popularTopWrapper: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+
+  popularTopText: {
+    marginLeft: 10,
+    fontFamily: 'Poppins-SemiBold',
+    fontSize: 14,
+  },
+
+  popularTitlesWrapper: {
+    marginTop: 20,
+  },
+
+  popularTitlesTitle: {
+    fontFamily: 'Poppins-Bold',
+    fontSize: 14,
+    color: colors.textDark,
+  },
+
+  popularTitlesWeight: {
+    fontFamily: 'Poppins-Medium',
+    fontSize: 12,
+    color: colors.textLight,
+    marginTop: 5,
+  },
+  popularCardBottom: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 10,
+    marginLeft: -20,
+  },
+  addPizzaButton: {
+    backgroundColor: colors.primary,
+    paddingHorizontal: 40,
+    paddingVertical: 20,
+    borderTopRightRadius: 25,
+    borderBottomLeftRadius: 25,
+  },
+  ratingWrapper: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginLeft: 20,
+    marginRight: 5,
+  },
+  rating: {
+    fontFamily: 'Poppins-SemiBold',
+    fontSize: 12,
+    color: colors.textDark,
   },
 });
