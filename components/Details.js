@@ -15,7 +15,8 @@ const Details = ({route, navigation}) => {
   const {item} = route.params;
 
   return (
-    <View>
+    <View style={styles.container}>
+      {/* Header */}
       <SafeAreaView>
         <View style={styles.headerWrapper}>
           <TouchableOpacity onPress={() => navigation.goBack()}>
@@ -32,6 +33,11 @@ const Details = ({route, navigation}) => {
           </View>
         </View>
       </SafeAreaView>
+
+      {/* Tiles */}
+      <View style={styles.titlesWrapper}>
+        <Text style={styles.title}>{item.title}</Text>
+      </View>
     </View>
   );
 };
@@ -39,6 +45,10 @@ const Details = ({route, navigation}) => {
 export default Details;
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+
   headerWrapper: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -60,5 +70,17 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderColor: colors.primary,
     borderWidth: 2,
+  },
+
+  titlesWrapper: {
+    paddingHorizontal: 20,
+    marginTop: 30,
+  },
+
+  title: {
+    fontFamily: 'Poppins-Bold',
+    fontSize: 32,
+    color: colors.textDark,
+    width: '50%',
   },
 });
